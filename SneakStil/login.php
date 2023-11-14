@@ -33,7 +33,7 @@ if(empty($errores)){
     if($auth){
       session_start();
       $_SESSION["nombre"] = $usuario["nombre"];
-      $_SESSION["login"] = true;
+      $_SESSION["login"]=true;
       header("Location: index.php");
 
   }else{

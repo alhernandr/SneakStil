@@ -45,7 +45,8 @@
         
           <?php
             require './validation.php';
-            if(!esAutentificado()) { ?>
+            $auth=esAutentificado();
+            if(!$auth) { ?>
             <a href="\SneakStil\login.php"><i class="bx bx-user"></i></a>
         <?php }else{ ?>
             <a href="logout.php" class="nav_logout">Log Out</a>
