@@ -27,7 +27,7 @@
         </tr>
         <?php while($fila = mysqli_fetch_assoc($datos)){?>
             <tr>
-                <td> <img src="../imagenes/<?php echo $fila['imagen']?>"> </td>
+                <td> <img src="/SneakStil/imagenes/<?php echo $fila['imagen']?>"> </td>
                 <td> <?php echo $fila['id']?></td>
                 <td> <?php echo $fila['nombre']?> </td>
                 <td> <?php echo $fila['marca']?> </td>
@@ -36,7 +36,7 @@
                 
 
                 <td class="operaciones">
-                    <a href=".\sneakers\actualizar.php/?id=<?php echo $fila['id'];?>" class="boton boton-actualizar">Actualizar</a>
+                    <a href=".\sneakers\actualizar.php?id=<?php echo $fila['id'];?>" class="boton boton-actualizar">Actualizar</a>
                     <a class="boton boton-block" href=".\sneakers\borrar.php/?id=<?php echo $fila['id'];?>">Borrar</a>
                 </td>
             </tr>

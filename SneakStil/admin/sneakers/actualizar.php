@@ -1,7 +1,7 @@
 <?php
     $id = $_GET['id']??null;
-    require '../../database.php';
-    require '../../includes/funciones.php';
+    require '\SneakStil\SneakStil\database.php';
+    require '\SneakStil\SneakStil\includes\funciones.php';
     incluirTemplate('header');
     $errores=[];
     $db=conectarBD();
@@ -12,7 +12,23 @@
     $marca='';
     $precio='';
     $disponibilidad='';
+    $imagen='';
 
+    $id=$_GET['id']??NULL;
+
+    if(!isset($id)){
+        header('Location: /SneakStil/admin/index.php');
+    }
+    $consulta="SELECT * from productos where id=$id";
+    $res=mysqli_query($db,$consulta);
+
+    if($fila=mysqli_fetch_array($res)){
+        $nombre=$fila['nombre'];
+        $marca=$fila['marca'];
+        $precio=$fila['precio'];
+        $disponibilidad=$fila['disponibilidad'];
+        $imagen2=$fila['imagen'];
+    }
     if ($_SERVER['REQUEST_METHOD']==="POST"){
          //comprobamos los datos
          $nombre= $_POST['nombre'];
@@ -20,9 +36,10 @@
          $imagen= $_FILES['imagen'];
          $precio= $_POST['precio'];
          $disponibilidad=$_POST['disponibilidad'];
+         
         
         
-         $carpetaImagenes='../SneakStil/img';
+         $carpetaImagenes='/SneakStil/SneakStil/imagenes/';
          if (!is_dir($carpetaImagenes)){
              mkdir($carpetaImagenes);
          }
@@ -31,39 +48,40 @@
        if (!$nombre) {
             $errores[]="Debes añadir un título";
         }
-        else if (!$marca) {
+        if (!$marca) {
          $errores[]="Debes añadir un precio";
         }
-        else if (!$imagen) {
+        if (!$imagen) {
             $errores[]="Debes añadir una imagen";
         }
-        else if (!$precio) {
+        if (!$precio) {
             $errores[]="Debes añadir una descripción";
         }
-        else if (!$disponibilidad) {
+        if (!$disponibilidad) {
             $errores[]="Debes seleccionar un vendedor";
         }
-        
         //valida la imagen por tamaño (medida máxima en kb)
         if (($imagen['size']/1024 > MEDIDA)){
             $errores[]="Reduzca el tamaño de la imagen, debe ser menor a ". MEDIDA ."kb.";
         }
-        
-        else{
-            //Generar nombre único
-            $nombreImagen=md5(uniqid(rand(),true)) . ".jpg";
-        }
 
         //ahora es donde realmente insertamos los valores en la bd. Solo se introduce el campo si el array de errores está vacío
         if(empty($errores)){
-            
-            $query="UPDATE propiedades SET nombre='$nombre', marca=$marca, imagen='$nombreImagen', precio='$precio', disponibilidad='$disponibilidad' WHERE id='$id';";
-        $resultado=mysqli_query($db,$query);
+            if(!$imagen['name']){
+                $nombreImagen=$imagen2;
+            }else{
+                $nombreImagen=md5(uniqid(rand(),true)) . ".jpg";
+                unlink($carpetaImagenes.$imagen2);
+                move_uploaded_file($imagen['tmp_name'], $carpetaImagenes.$nombreImagen);
+            }
+                
+            $query="UPDATE productos SET nombre='$nombre', marca='$marca', imagen='$nombreImagen', precio=$precio, disponibilidad='$disponibilidad' WHERE id=$id;";
+            $resultado=mysqli_query($db,$query);
 
         if ($resultado) {
-            header('Location:/admin?resultado=1');
             //subir archivo
-            move_uploaded_file($imagen['tmp_name'], $carpetaImagenes.$nombreImagen);
+
+            header('Location:/SneakStil/admin/index.php?resultado=1');
         }
     }
 }   
@@ -76,38 +94,42 @@
                 <?php echo $error; ?>
             </div>
     <?php } ?>
-    <form action="/admin/propiedades/actualizar.php/?id=<?php echo $id;?>" class="formulario" method="POST" enctype="multipart/form-data">
-    <fieldset>
-            <legend>Informacion General</legend>
+    <form action="actualizar.php?id=<?php echo $id;?>" class="formulario" method="POST" enctype="multipart/form-data">
+            
+            <legend><u>Informacion General</u></legend>
 
             <label for="Nombre">Nombre: </label>
-            <input type="text" id="Nombre" name="Nombre">
+            <input type="text" id="Nombre" name="nombre" value="<?php echo $nombre ?>">
 
             <label for="Marca">Marca:</label>
-            <input type="text" name="Marca" id="Marca">
+            <input type="text" name="marca" id="marca" value="<?php echo $marca?>">
 
             <label for="imagen">Imagen:</label>
             <input type="file" name="imagen" id="imagen"  accept="image/jpeg, image/png, image/jpg">
 
             <label for="Precio">Precio:</label>
-            <input type="text-area" name="Precio" id="Precio" placeholder="Precio del sneakers...">
+            <input type="text-area" name="precio" id="precio" placeholder="Precio del sneakers..." value="<?php echo $precio ?>">
 
             <label for="Disponibilidad">Disponibilidad:</label>
-            <input type="text-area" name="Disponibilidad" id="Disponibilidad" placeholder="Disponibilidad del sneakers...">
+            <input type="text-area" name="disponibilidad" id="disponibilidad" placeholder="Disponibilidad del sneakers..." value="<?php echo $disponibilidad ?>">
 
 
-        </fieldset>
-        <fieldset>
-            <legend>Vendedor</legend>
+        
+        
+            <legend><u>Vendedor</u></legend>
             <select name="vendedor" id="vendedor">
             <option value="1">Lyonel</option>
-                <option value="2">Álvaro</option>
+            <option value="2">Álvaro</option>
             </select>
-        </fieldset>
-        <input type="submit" name="" id="" class="boton boton-verde" value="Actualizar propiedad">
+        
+        <div class="log_button">
+        <input type="submit" name="" id="" class="" value="Actualizar propiedad">
+        </div>
     </form>
 </main>
-
+    <div class="logoAdmin">
+        <img class="logoGrande" src="\SneakStil\SneakStil\img\logo.png" alt="">
+    </div>
 <?php
     incluirTemplate('footer');
 ?>

@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -40,8 +42,15 @@
             </li>
           </ul>
         </div>
+        
+          <?php
+            require './validation.php';
+            if(!esAutentificado()) { ?>
+            <a href="\SneakStil\login.php"><i class="bx bx-user"></i></a>
+        <?php }else{ ?>
+            <a href="logout.php" class="nav_logout">Log Out</a>
+        <?php } ?>
         <div class="nav__shop">
-        <a href="/SneakStil\login.php"><i class="bx bx-user"></i></a>
         <a href="/SneakStil\basket.php"><i class="bx bx-shopping-bag"></i></a>
         </div>
       </nav>

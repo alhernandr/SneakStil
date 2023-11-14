@@ -1,8 +1,9 @@
 <?php
   require 'database.php';
+  
   $errores=[];
   $db = conectarBD();
- 
+
   $nombre= '';
   $password='';
 

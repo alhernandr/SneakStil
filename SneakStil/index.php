@@ -1,5 +1,6 @@
 <?php
   include '../SneakStil/includes/templates/header.php'
+  
 ?>
 
       <!--===== HOME =====-->

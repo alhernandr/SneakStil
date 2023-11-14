@@ -604,6 +604,7 @@ img {
   .home__img{
     width: 31%;
   }
+  
 
 }
 @media screen and (min-width: 768px) {
@@ -639,6 +640,11 @@ img {
 
   .nav__toggle {
     display: none;
+  }
+
+  .nav_logout{
+    font-size: 1rem;
+    
   }
 
 
@@ -722,6 +728,7 @@ img {
     align-items: center;
     margin-top: 5rem;
   }
+  
 }/*# sourceMappingURL=styles.css.map */
 
 .contenedor_log{
