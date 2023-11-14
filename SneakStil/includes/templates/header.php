@@ -44,7 +44,7 @@
         </div>
         
           <?php
-            require './validation.php';
+            require '\SneakStil\SneakStil\validation.php';
             $auth=esAutentificado();
             if(!$auth) { ?>
             <a href="\SneakStil\login.php"><i class="bx bx-user"></i></a>
