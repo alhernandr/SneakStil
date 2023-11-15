@@ -128,7 +128,7 @@
     </form>
 </main>
     <div class="logoAdmin">
-        <img class="logoGrande" src="\SneakStil\SneakStil\img\logo.png" alt="">
+        <img class="logoGrande" src="\SneakStil\img\logo.png" alt="">
     </div>
 <?php
     incluirTemplate('footer');
