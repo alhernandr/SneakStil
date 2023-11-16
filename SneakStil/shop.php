@@ -13,7 +13,6 @@
             <span class="sneaker__preci">1.366€</span>
             <a href="" class="button-light">Add to Cart <i class="bx bx-right-arrow-alt button-icon"></i></a>
           </article>
-
           <article class="sneaker">
             <img src=".\img\air-jordan-4-military-black-removebg-preview.png" alt="" class="sneaker__img" />
             <span class="sneaker__name">Jordan 4 Retro  Military Black</span>
@@ -50,24 +49,24 @@
             <span class="sneaker__preci">885€</span>
             <a href="" class="button-light">Add to Cart <i class="bx bx-right-arrow-alt button-icon"></i></a>
           </article>
-        <article class="sneaker">
-          <img src=".\img\air-jordan-1-retro-high-og-palomino-copncop-DZ5485-020-144_720x-removebg-preview.png" alt="" class="sneaker__img" />
-          <span class="sneaker__name">Jordan 1 Retro High OG Palomino</span>
-          <span class="sneaker__preci">171€</span>
-          <a href="" class="button-light">Add to Cart <i class="bx bx-right-arrow-alt button-icon"></i></a>
-        </article>
-        <article class="sneaker">
-          <img src=".\img\concepts-x-dunk-low-sb-purple-lobster-removebg-preview.png" alt="" class="sneaker__img" id="dnk" />
-          <span class="sneaker__name" id="dnk-text">Nike SB Dunk Low Concepts Purple Lobster </span>
-          <span class="sneaker__preci">982€</span>
-          <a href="" class="button-light">Add to Cart <i class="bx bx-right-arrow-alt button-icon"></i></a>
-        </article>
-        <article class="sneaker">
-          <img src=".\img\s-l1600-removebg-preview.png" alt="" class="sneaker__img" id="onyx"/>
-          <span class="sneaker__name" id="onyx-text">adidas Yeezy Foam RNR Onyx</span>
-          <span class="sneaker__preci">114€</span>
-          <a href="" class="button-light">Add to Cart <i class="bx bx-right-arrow-alt button-icon"></i></a>
-        </article>
+          <article class="sneaker">
+            <img src=".\img\air-jordan-1-retro-high-og-palomino-copncop-DZ5485-020-144_720x-removebg-preview.png" alt="" class="sneaker__img" />
+            <span class="sneaker__name">Jordan 1 Retro High OG Palomino</span>
+            <span class="sneaker__preci">171€</span>
+            <a href="" class="button-light">Add to Cart <i class="bx bx-right-arrow-alt button-icon"></i></a>
+          </article>
+          <article class="sneaker">
+            <img src=".\img\concepts-x-dunk-low-sb-purple-lobster-removebg-preview.png" alt="" class="sneaker__img" id="dnk" />
+            <span class="sneaker__name" id="dnk-text">Nike SB Dunk Low Concepts Purple Lobster </span>
+            <span class="sneaker__preci">982€</span>
+            <a href="" class="button-light">Add to Cart <i class="bx bx-right-arrow-alt button-icon"></i></a>
+          </article>
+          <article class="sneaker">
+            <img src=".\img\s-l1600-removebg-preview.png" alt="" class="sneaker__img" id="onyx"/>
+            <span class="sneaker__name" id="onyx-text">adidas Yeezy Foam RNR Onyx</span>
+            <span class="sneaker__preci">114€</span>
+            <a href="" class="button-light">Add to Cart <i class="bx bx-right-arrow-alt button-icon"></i></a>
+          </article>
         <article class="sneaker">
           <img src=".\img\71eGkodgINL._AC_UY1000_-removebg-preview.png" alt="" class="sneaker__img" id="trvis" />
           <span class="sneaker__name" id="trvis">Jordan 1 Retro Low OG SP Fragment x Travis Scott</span>

@@ -59,13 +59,6 @@
           <div class="createaccount">
             <a href="login.php">Already have an account?</a>
           </div>
-          <hr class="solid">
-          <div class="log_button_google">
-            <input class="boton" type="submit" value="Continue With GOOGLE">
-          </div>
-          <div class="log_button_facebook">
-            <input class="boton" type="submit" value="Continue With FACEBOOK">
-          </div>
       </form>
       </center>
     </div>

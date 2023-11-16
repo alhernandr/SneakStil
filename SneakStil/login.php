@@ -74,14 +74,7 @@ if(empty($errores)){
         </div>
         <div class="createaccount">
         <a href="signin.php">Create an account</a>
-        </div>
-        <hr class="solid">
-        <div class="log_button_google">
-        <input class="boton" type="submit" value="Continue With GOOGLE">
-        </div>
-        <div class="log_button_facebook">
-        <input class="boton" type="submit" value="Continue With FACEBOOK">
-        </div>
+        </div> 
       </center>
     </form>
     </div>

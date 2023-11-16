@@ -28,10 +28,9 @@
           </ul>
         </div>
         <div class="footer__box">
-          <a href="#" class="footer__social"><i class="bx bxl-facebook"></i></a>
-          <a href="#" class="footer__social"><i class="bx bxl-instagram"></i></a>
-          <a href="#" class="footer__social"><i class="bx bxl-twitter"></i></a>
-          <a href="#" class="footer__social"><i class="bx bxl-google"></i></a>
+          <a href="https://www.facebook.com/" class="footer__social"><i class="bx bxl-facebook"></i></a>
+          <a href="https://www.instagram.com/?hl=es" class="footer__social"><i class="bx bxl-instagram"></i></a>
+          <a href="https://twitter.com/home" class="footer__social"><i class="bx bxl-twitter"></i></a>
         </div>
       </div>
 
