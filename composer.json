@@ -1,0 +1,17 @@
+{
+    "name": "2daw/sneak-stil",
+    "autoload": {
+        "psr-4": {
+            "MVC\\" : "./",
+            "Controllers\\" : "./controller",
+            "Model\\" : "./models"
+        }
+    },
+    "authors": [
+        {
+            "name": "alhernandr",
+            "email": "alvaro290932000@gmail.com"
+        }
+    ],
+    "require": {}
+}
