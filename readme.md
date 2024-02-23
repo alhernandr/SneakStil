@@ -51,10 +51,12 @@ Diagrama de Casos de Uso*
 
 ## ***DIAGRAMAS***
 1. ***Diagrama de Clases***
+
 ![image](https://github.com/alhernandr/SneakStil/assets/116368055/3783ccbb-1c6d-45dd-b4b8-9959994a5437)
 
 
 1. ***Diagrama de Casos de Uso***
+
 ![image](https://github.com/alhernandr/SneakStil/assets/116368055/fcde6e7b-cc94-4f76-aadb-d2106ec50bb0)
 
 
