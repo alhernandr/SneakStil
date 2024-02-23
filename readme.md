@@ -1,5 +1,4 @@
-# ***SNEAKSTIL*** ![logo](https://github.com/alhernandr/SneakStil/assets/116368055/38c56ceb-1855-4d18-a09f-d11286f1ae96)
-
+# ***SNEAKSTIL*** ![image](https://github.com/alhernandr/SneakStil/assets/116368055/539af187-2c83-46d5-a508-42436639a14b)
 
 
 ***DOCUMENTACIÓN***
