@@ -1,4 +1,5 @@
-# ***SNEAKSTIL*** ![logo2](https://hackmd.io/_uploads/H12ytLL2p.jpg)
+# ***SNEAKSTIL*** ![image](https://github.com/alhernandr/SneakStil/assets/116368055/539af187-2c83-46d5-a508-42436639a14b)
+
 
 ***DOCUMENTACIÓN***
 
@@ -50,10 +51,14 @@ Diagrama de Casos de Uso*
 
 ## ***DIAGRAMAS***
 1. ***Diagrama de Clases***
-![image](https://hackmd.io/_uploads/B1p8IIUna.png)
+
+![image](https://github.com/alhernandr/SneakStil/assets/116368055/3783ccbb-1c6d-45dd-b4b8-9959994a5437)
+
 
 1. ***Diagrama de Casos de Uso***
-![image](https://hackmd.io/_uploads/r14OLLU3p.png)
+
+![image](https://github.com/alhernandr/SneakStil/assets/116368055/fcde6e7b-cc94-4f76-aadb-d2106ec50bb0)
+
 
 ## ***ESTRUCTURA DEL PROYECTO***
 
@@ -64,23 +69,23 @@ Diagrama de Casos de Uso*
 
 ***Controllers***
 *Actúan como intermediarios entre los modelos y las vistas para recibir las solicitudes del usuario y procesarlos con el objetivo de enviar los datos a las vistas que mostrarán la información especificada por el usuario.*
-![image](https://hackmd.io/_uploads/SJs2ULUnp.png)
+
 
 ***Includes***
 *El directorio includes incluye:
 /config/database.php: directorio de configuración con conexión a la base de datos en PDO.
 funciones.php: archivo que contiene funciones comunes utilizadas en varias partes del proyecto para mejorar la modularidad y el mantenimiento del código.
 app.php: inicializa la aplicación cargando dependencias con Composer, estableciendo la conexión a la base de datos mediante conectarDB(), y configurando el patrón Active Record para el manejo de modelos con la base de datos. Con ello, se facilita la integración de bibliotecas y la gestión de la base de datos, simplificando el desarrollo, conectando componentes clave y pr*eparando el entorno de ejecución.
-![image](https://hackmd.io/_uploads/r1xJP8UhT.png)
+
 
 ***Models***
 *Equivalentes a las clases en la POO, los modelos en el patrón MVC gestionan la lógica de negocio y el acceso a datos, sirviendo como puente entre la base de datos y el controlador.*
-![image](https://hackmd.io/_uploads/BJ4fDULn6.png)
+
 
 
 ***Clase Router*** 
 *Gestiona las rutas de la aplicación, diferenciando entre solicitudes GET y POST a través de los arrays $getRoutes y $postRoutes. Con comprobarRutas, se determina la ruta actual y el método de solicitud, ejecutando la función asociada en caso de coincidencia. Por otro lado, render se encarga de la presentación, extrayendo los datos enviados a la vista y los encapsula dentro del layout especificado. Con esta estructura de enrutamiento se facilita la organización del flujo de navegación y la separación clara entre la lógica de procesamiento y la presentación visual en la aplicación.*
-![image](https://hackmd.io/_uploads/SkpQvUUhp.png)
+
 
 
 ***ActiveRecord***
@@ -98,11 +103,11 @@ app.php: inicializa la aplicación cargando dependencias con Composer, estableci
 
 ***Public***
 La carpeta public de nuestro proyecto actúa como el punto de entrada para los usuarios, conteniendo el archivo index.php que inicializa la aplicación y un directorio build para el front-end. Dentro de build, se organizan los archivos estáticos como CSS, JavaScript, e imágenes, esenciales para el diseño y funcionalidad de la interfaz de usuario; el index.php, por otro lado, configura las dependencias, inicia el enrutador (Router) y define las rutas hacia distintos controladores (Controllers), gestionando así las solicitudes y respuestas dentro del patrón MVC. Este diseño separa claramente la lógica de presentación del manejo de la lógica de negocio, promoviendo una estructura organizada y modular para el desarrollo web.
-![image](https://hackmd.io/_uploads/HyxJuUUh6.png)
+
 
 ***Views***
 Incluye todas las vistas a las que tiene acceso el usuario. Además, el archivo en la carpeta views sirve como plantilla base para el contenido generado dinámicamente en la aplicación, incorporando un diseño consistente en todas las páginas. Inicia sesión automáticamente si no existe una previa, y determina si el usuario está autenticado para mostrar contenido personalizado en la barra de navegación. La estructura incluye un encabezado con enlaces de navegación, un área condicional para usuarios autenticados con opciones específicas según el tipo de usuario (Administrador o Usuario regular), y un pie de página con información de contacto y un formulario de suscripción al newsletter. Los recursos estáticos para el estilo y la funcionalidad (CSS y JavaScript) se cargan desde la carpeta build, asegurando una experiencia de usuario coherente y atractiva.
-![image](https://hackmd.io/_uploads/H1egd8L2a.png)
+
 
 
 Las vistas están divididas en:
