@@ -7,8 +7,9 @@ namespace Model;
  *
  * Representa un usuario en la base de datos.
  */
-class Usuario extends ActiveRecord {
-   
+class Usuario extends ActiveRecord
+{
+
     /** @var string Nombre de la tabla en la base de datos */
     protected static $tabla = 'clientes';
 
@@ -32,7 +33,8 @@ class Usuario extends ActiveRecord {
      *
      * @param array $args Los argumentos para inicializar el usuario.
      */
-    public function __construct($args = []) {
+    public function __construct($args = [])
+    {
         $this->email = $args['email'] ?? null;
         $this->password = $args['password'] ?? null;
         $this->id = $args['id'] ?? null;
@@ -44,7 +46,8 @@ class Usuario extends ActiveRecord {
      *
      * @return array Los errores de validación.
      */
-    public function validar() {
+    public function validar()
+    {
         if (!$this->email) {
             self::$errores[] = "El Email del usuario es obligatorio";
         }
@@ -59,7 +62,8 @@ class Usuario extends ActiveRecord {
      *
      * @return mixed El resultado de la consulta si el usuario existe, null si no.
      */
-    public function existeUsuario() {
+    public function existeUsuario()
+    {
         // Revisar si el usuario existe.
         $query = "SELECT * FROM " . self::$tabla . " WHERE nombre like '" . $this->email . "' LIMIT 1";
         $resultado = self::$db->query($query);
@@ -78,13 +82,14 @@ class Usuario extends ActiveRecord {
      * @param mixed $resultado El resultado de la consulta que contiene al usuario.
      * @return bool True si la contraseña es correcta, false si no.
      */
-    public function comprobarPassword($resultado) {
+    public function comprobarPassword($resultado)
+    {
         $autenticado = password_verify($this->password, $resultado->pasword);
 
         if (!$autenticado) {
             self::$errores[] = 'El Password es Incorrecto';
             return;
-        } 
+        }
         return true;
     }
 
@@ -93,13 +98,14 @@ class Usuario extends ActiveRecord {
      *
      * @return void
      */
-    public function autenticar() {
-         // El usuario está autenticado
-         session_start();
-
-         // Llenar el arreglo de la sesión
-         $_SESSION['usuario'] = $this->email;
-         $_SESSION['login'] = true;
+    public function autenticar()
+    {
+        // El usuario está autenticado
+        session_start();
+        
+        // Llenar el arreglo de la sesión
+        $_SESSION['usuario'] = $this->email;
+        $_SESSION['login'] = true;
         if ($this->admin == 1) {
             header('Location: /admin');
         } else {

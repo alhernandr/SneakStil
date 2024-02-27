@@ -7,7 +7,8 @@ namespace Model;
  *
  * Representa un producto en la base de datos.
  */
-class Producto extends ActiveRecord {
+class Producto extends ActiveRecord
+{
 
     /** @var string Nombre de la tabla en la base de datos */
     protected static $tabla = 'productos';
@@ -38,7 +39,8 @@ class Producto extends ActiveRecord {
      *
      * @param array $args Los argumentos para inicializar el producto.
      */
-    public function __construct($args = []) {
+    public function __construct($args = [])
+    {
         $this->id = $args['id'] ?? null;
         $this->nombre = $args['Nombre'] ?? null;
         $this->marca = $args['Marca'] ?? null;
@@ -52,7 +54,8 @@ class Producto extends ActiveRecord {
      *
      * @return array Los errores de validación.
      */
-    public function validar() {
+    public function validar()
+    {
         if (!$this->nombre) {
             self::$errores[] = "El nombre es obligatorio";
         }
@@ -65,7 +68,7 @@ class Producto extends ActiveRecord {
         if (!$this->disponibilidad) {
             self::$errores[] = "La disponibilidad es obligatoria";
         }
-        
+
         return self::$errores;
     }
 
@@ -75,7 +78,8 @@ class Producto extends ActiveRecord {
      * @param int $id El ID del producto.
      * @return void
      */
-    public function setID($id) {
+    public function setID($id)
+    {
         $this->id = $id;
     }
 
@@ -84,7 +88,8 @@ class Producto extends ActiveRecord {
      *
      * @return bool True si el producto existe, false si no.
      */
-    public function existeProducto() {
+    public function existeProducto()
+    {
         // Revisar si el producto existe.
         $query = "SELECT * FROM " . self::$tabla . " WHERE nombre = '" . $this->nombre . "' LIMIT 1";
         $resultado = self::$db->query($query);
@@ -102,7 +107,8 @@ class Producto extends ActiveRecord {
      *
      * @return array Los productos obtenidos.
      */
-    public static function obtenerProductos() {
+    public static function obtenerProductos()
+    {
         // Obtener todos los productos.
         $query = "SELECT * FROM " . self::$tabla;
         $resultado = self::consultarSQL($query);
@@ -115,7 +121,8 @@ class Producto extends ActiveRecord {
      *
      * @return bool True si el producto se eliminó correctamente, false si no.
      */
-    public function eliminar() {
+    public function eliminar()
+    {
         $query = "DELETE FROM " . self::$tabla . " WHERE id=" . $this->id;
         $resultado = self::$db->query($query);
         return $resultado;
