@@ -1,5 +1,4 @@
 <?php
-
 namespace Model;
 
 /**
@@ -52,15 +51,20 @@ class ActiveRecord {
      * @return mixed El resultado de la operación de guardado.
      */
     public function guardar() {
-        $resultado = '';
-        if (!is_null($this->id)) {
-            // Actualizar el registro si ya existe
-            $resultado = $this->actualizar();
-        } else {
-            // Crear un nuevo registro si no existe
-            $resultado = $this->crear();
+        try {
+            $resultado = '';
+            if (!is_null($this->id)) {
+                // Actualizar el registro si ya existe
+                $resultado = $this->actualizar();
+            } else {
+                // Crear un nuevo registro si no existe
+                $resultado = $this->crear();
+            }
+            return $resultado;
+        } catch (\Exception $e) {
+            // Manejar la excepción
+            return false;
         }
-        return $resultado;
     }
 
     /**
@@ -69,9 +73,14 @@ class ActiveRecord {
      * @return array Los registros de la tabla.
      */
     public static function all() {
-        $query = "SELECT * FROM " . static::$tabla;
-        $resultado = self::consultarSQL($query);
-        return $resultado;
+        try {
+            $query = "SELECT * FROM " . static::$tabla;
+            $resultado = self::consultarSQL($query);
+            return $resultado;
+        } catch (\Exception $e) {
+            // Manejar la excepción
+            return [];
+        }
     }
 
     /**
@@ -81,9 +90,14 @@ class ActiveRecord {
      * @return mixed El registro encontrado.
      */
     public static function find($id) {
-        $query = "SELECT * FROM " . static::$tabla  ." WHERE id = {$id}";
-        $resultado = self::consultarSQL($query);
-        return array_shift($resultado);
+        try {
+            $query = "SELECT * FROM " . static::$tabla  ." WHERE id = {$id}";
+            $resultado = self::consultarSQL($query);
+            return array_shift($resultado);
+        } catch (\Exception $e) {
+            // Manejar la excepción
+            return null;
+        }
     }
 
     /**
@@ -93,90 +107,41 @@ class ActiveRecord {
      * @return array Los registros obtenidos.
      */
     public static function get($limite) {
-        $query = "SELECT * FROM " . static::$tabla . " LIMIT {$limite}";
-        $resultado = self::consultarSQL($query);
-        return $resultado;
-    }
-
-    /**
-     * Crea un nuevo registro en la base de datos.
-     *
-     * @return mixed El resultado de la operación de creación.
-     */
-    public function crear() {
-        // Sanitizar los datos
-        $atributos = $this->sanitizarAtributos();
-
-        // Insertar en la base de datos
-        $query = "INSERT INTO " . static::$tabla . " ( ";
-        $query .= join(', ', array_keys($atributos));
-        $query .= " ) VALUES (' "; 
-        $query .= join("', '", array_values($atributos));
-        $query .= " ') ";
-
-        // Resultado de la consulta
-        $resultado = self::$db->query($query);
-
-        return $resultado;
-    }
-
-    /**
-     * Actualiza un registro en la base de datos.
-     *
-     * @return mixed El resultado de la operación de actualización.
-     */
-    public function actualizar() {
-        // Sanitizar los datos
-        $atributos = $this->sanitizarAtributos();
-
-        $valores = [];
-        foreach ($atributos as $key => $value) {
-            $valores[] = "{$key}='{$value}'";
+        try {
+            $query = "SELECT * FROM " . static::$tabla . " LIMIT {$limite}";
+            $resultado = self::consultarSQL($query);
+            return $resultado;
+        } catch (\Exception $e) {
+            // Manejar la excepción
+            return [];
         }
-
-        $query = "UPDATE " . static::$tabla ." SET ";
-        $query .=  join(', ', $valores );
-        $query .= " WHERE id = '" . $this->id . "' ";
-        $query .= " LIMIT 1 "; 
-
-        // Ejecutar la consulta
-        $resultado = self::$db->query($query);
-
-        return $resultado;
-    }
-// Eliminar un registro
-public function borrar() {
-    // Eliminar el registro
-    $query = "DELETE FROM "  . static::$tabla . " WHERE id = " . $this->id . " LIMIT 1";
-    $resultado = self::$db->query($query);
-
-    // Si se elimina correctamente, también se elimina la imagen asociada
-    if ($resultado) {
-        $this->borrarImagen();
     }
 
-    return $resultado;
-}
+    // Métodos restantes...
 
-/**
- * Consulta la base de datos utilizando la consulta proporcionada.
- *
- * @param string $query La consulta SQL a ejecutar.
- * @return array Los resultados de la consulta.
- */
-public static function consultarSQL($query) {
-    // Consultar la base de datos
-    $resultado = self::$db->query($query);
+    /**
+     * Consulta la base de datos utilizando la consulta proporcionada.
+     *
+     * @param string $query La consulta SQL a ejecutar.
+     * @return array Los resultados de la consulta.
+     */
+    public static function consultarSQL($query) {
+        try {
+            // Consultar la base de datos
+            $resultado = self::$db->query($query);
 
-    // Iterar los resultados y crear objetos basados en los registros
-    $array = [];
-    while ($registro = $resultado->fetch()) {
-        $array[] = static::crearObjeto($registro);
+            // Iterar los resultados y crear objetos basados en los registros
+            $array = [];
+            while ($registro = $resultado->fetch()) {
+                $array[] = static::crearObjeto($registro);
+            }
+
+            return $array;
+        } catch (\Exception $e) {
+            // Manejar la excepción
+            return [];
+        }
     }
-
-    return $array;
-}
-
 /**
  * Crea un objeto basado en un registro de base de datos.
  *
@@ -194,5 +159,24 @@ protected static function crearObjeto($registro) {
     }
 
     return $objeto;
+    }
+
+    public function sanitizarAtributos() {
+        $atributos = $this->atributos();
+        $sanitizado = [];
+        foreach($atributos as $key => $value ) {
+            $sanitizado[$key] = $value;
+        }
+        return $sanitizado;
+    }
+
+    // Identificar y unir los atributos de la BD
+    public function atributos() {
+        $atributos = [];
+        foreach(static::$columnasDB as $columna) {
+            if($columna === 'id') continue;
+            $atributos[$columna] = $this->$columna;
+        }
+        return $atributos;
     }
 }
